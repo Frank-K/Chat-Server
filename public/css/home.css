@@ -1,0 +1,96 @@
+body {
+    background-color: #d3e8ff;
+}
+
+/* The main element on the page */
+.main {
+    background-color: #f0f7ff;
+
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
+
+    height: 100%;
+    width: 100%;
+
+    padding-left: 0;
+    padding-right: 0;
+}
+
+/* The div holding the input form */
+.message-input {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    padding: 10px;
+    background-color: #f0f7ff;
+}
+
+/* The message input field */
+#message {
+    border-radius: 5px;
+    border-top-right-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+/* The send button */
+.btn {
+    cursor: pointer;
+}
+
+/* The container holding the messages */
+.user-messages {
+    height: 100%;
+    overflow: scroll;
+    padding-bottom: 55px;
+    list-style-type: none;
+    padding-left: 0px;
+}
+
+.user-messages::-webkit-scrollbar { 
+    display: none; 
+}
+
+.message {
+    margin: 5px;
+    padding: 5px;
+    width: fit-content;
+}
+.incomming-message {
+    background-color: #d2e0ff;
+    float: left;
+    clear: both;
+}
+
+.outgoing-message {
+    background-color: #c6e3ff;
+    float: right;
+    clear: both;
+}
+
+.server-message {
+    background-color: #d7dee6;
+    float: right;
+    clear: both;
+}
+
+@media (min-width: 992px) {
+    .main {
+        width: 900px;
+        height: 960px;
+    }
+}
+
+@media (min-width: 768px) {
+    .main {
+        height: 720px;
+    }
+}
+
+@media (min-width: 576px) {
+    .main {
+        height: 540px;
+    }
+}
