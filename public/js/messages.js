@@ -28,8 +28,6 @@ $(function () {
 
   $('#message').on('input', function(){
     let size = $('#message').val().length;
-    console.log(size);
-    // console.log($('#notice').val());
     $('#notice').text(`Character limit: ${size} / 280`);
   });
 });
