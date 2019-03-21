@@ -17,8 +17,9 @@
       <ul id="user-messages" class="user-messages"></ul>
       <div class="message-input">
         <form action="">
+          <p id="notice" class="text-muted">Character limit: 0 / 280</p>
           <div class="input-group">
-            <input type="text" id="message" autocomplete="off" placeholder="Enter a message" class="form-control input">
+            <input type="text" id="message" autocomplete="off" placeholder="Enter a message" maxlength="280" class="form-control input">
             <span id="submit-button" class="input-group-btn btn">
               <i class="fas fa-paper-plane fa-lg"></i>
             </span>

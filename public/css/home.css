@@ -49,31 +49,43 @@ body {
     padding-left: 0px;
 }
 
+/* Hide the scroll bar for the chat box */
 .user-messages::-webkit-scrollbar { 
     display: none; 
 }
 
+/* Basic style for all messages */
 .message {
     margin: 5px;
     padding: 5px;
     width: fit-content;
 }
+
+/* Style for messages from other users */
 .incomming-message {
     background-color: #d2e0ff;
     float: left;
     clear: both;
 }
 
+/* Style for messages from this user */
 .outgoing-message {
     background-color: #c6e3ff;
     float: right;
     clear: both;
 }
 
+/* Style for messages from the server */
 .server-message {
     background-color: #d7dee6;
     float: right;
     clear: both;
+}
+
+/* The notice message above the text input */
+#notice {
+    margin: 0 0 2px 2px;
+    font-size: 10px;
 }
 
 @media (min-width: 992px) {

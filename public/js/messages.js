@@ -25,4 +25,11 @@ $(function () {
     $('#user-messages').append($('<li class="server-message message shadow-sm text-muted">').text(msg));
     $('#user-messages').scrollTop($('#user-messages')[0].scrollHeight);
   });
+
+  $('#message').on('input', function(){
+    let size = $('#message').val().length;
+    console.log(size);
+    // console.log($('#notice').val());
+    $('#notice').text(`Character limit: ${size} / 280`);
+  });
 });
