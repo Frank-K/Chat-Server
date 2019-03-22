@@ -2,7 +2,7 @@ const socket = io();
 
 $(function () {
   $('form').submit(function(e){
-    e.preventDefault(); // prevents page reloading
+    e.preventDefault();
     socket.emit('chat message', $('#message').val());
 
     if ($('#message').val() == '/u') {
@@ -16,15 +16,18 @@ $(function () {
     return false;
   });
 
+  // Submit the for when the send button is pressed
   $('#submit-button').click(function() {
     $('form').submit();
   });
 
+  // Handle a chat message from another user
   socket.on('chat message', function(msg){
     $('#user-messages').append(`<li class="incomming-message message shadow-sm"><span class="username-span">${msg['username']}:</span><span class="user-message-span">${msg['message']}</span>`);
     $('#user-messages').scrollTop($('#user-messages')[0].scrollHeight);
   });
 
+  // Handle a message from the server
   socket.on('server message', function(msg){
     $('#user-messages').append($('<li class="server-message message shadow-sm text-muted">').text(msg));
     $('#user-messages').scrollTop($('#user-messages')[0].scrollHeight);
