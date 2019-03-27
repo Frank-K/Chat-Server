@@ -4,6 +4,7 @@ const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const path = require('path');
 const winston = require('winston');
+const Helpers = require("./helpers.js");
 
 const logger = winston.createLogger({
   format: winston.format.combine(
@@ -27,6 +28,13 @@ app.get('/', (req, res) => {
 
   res.sendFile(__dirname + '/home.html');
 });
+
+// Check if a message is a command
+app.get('/commands', (req, res) => {
+  let helpers = new Helpers();
+
+  res.status(200).json({ commands: Array.from(helpers.getCommands()) });
+})
 
 // Global users variable to keep track of current users
 global.users = {};
@@ -54,10 +62,12 @@ io.on('connection', (socket) => {
   socket.on('chat message', (msg) => {
     logger.info(`message ${global.users[socket.id]}: ${msg} `);
 
+    let helpers = new Helpers();
+
     if (msg.toString().length > 280) {
       socket.emit('server message', 'Sorry, your message was too long to send.');
-    } else if (msg.toString() === '/u') {
-      socket.emit('server message', `There are ${Object.keys(global.users).length} user(s) online.`);
+    } else if (helpers.isCommand(msg.toString())) {
+      socket.emit('server message', helpers.doCommand(msg.toString(), global.users));
     } else {
       let payload = {'username': global.users[socket.id], 'message': msg}
       socket.broadcast.emit('chat message', payload);

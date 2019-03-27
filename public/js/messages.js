@@ -1,11 +1,18 @@
 const socket = io();
 
 $(function () {
+  let commands;
+  
+  $.get('/commands', (body) => {
+    commands = new Set(body.commands);
+  })
+
+
   $('form').submit(function(e){
     e.preventDefault();
     socket.emit('chat message', $('#message').val());
 
-    if ($('#message').val() == '/u') {
+    if (commands.has($('#message').val())) {
       // pass
     } else if ($('#message').val().length <= 255) {
       $('#user-messages').append($('<li class="outgoing-message message shadow-sm">').text($('#message').val()));
