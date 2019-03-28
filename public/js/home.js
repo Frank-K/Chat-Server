@@ -21,4 +21,5 @@ $(function () {
     // Emit the username to the server
     socket.emit('join', value.value);
   })
+
 });

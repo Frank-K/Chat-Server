@@ -88,20 +88,33 @@ body {
     font-size: 10px;
 }
 
+/* Span holding a users username */
 .username-span {
     font-size: 10px;
     float: left;
 }
 
+/* Span holding a users message */
 .user-message-span {
     float: left;
     clear: both;
 }
 
+/* Span holding the timestamp of a message */
 .date-time-span {
     float: right;
     clear: both;
     font-size: 8px;
+}
+
+/* Remove the arrow from the popup */
+.tooltip .tooltip-inner {
+    background-color: #f0f7ff;
+    color: #6c757d;
+}
+  
+.tooltip .arrow::before {
+    display: none;
 }
 
 @media (min-width: 992px) {
