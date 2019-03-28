@@ -98,6 +98,12 @@ body {
     clear: both;
 }
 
+.date-time-span {
+    float: right;
+    clear: both;
+    font-size: 8px;
+}
+
 @media (min-width: 992px) {
     .main {
         width: 900px;

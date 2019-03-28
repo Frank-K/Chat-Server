@@ -7,15 +7,22 @@ $(function () {
     commands = new Set(body.commands);
   })
 
-
   $('form').submit(function(e){
     e.preventDefault();
-    socket.emit('chat message', $('#message').val());
 
-    if (commands.has($('#message').val())) {
+    let message = $('#message').val()
+
+    socket.emit('chat message', message);
+
+    if (commands.has(message)) {
       // pass
-    } else if ($('#message').val().length <= 255) {
-      $('#user-messages').append($('<li class="outgoing-message message shadow-sm">').text($('#message').val()));
+    } else if (message.length <= 255) {
+      
+      $('#user-messages').append(`<li class="outgoing-message message shadow-sm">
+                                  <span class="username-span">You:</span>
+                                  <span class="user-message-span">${message}</span>
+                                  <span class="date-time-span">${new Date().toLocaleTimeString()}</span>
+                                  </li>`);
       $('#user-messages').scrollTop($('#user-messages')[0].scrollHeight);
     }
     $('#message').val('');
@@ -30,7 +37,11 @@ $(function () {
 
   // Handle a chat message from another user
   socket.on('chat message', function(msg){
-    $('#user-messages').append(`<li class="incomming-message message shadow-sm"><span class="username-span">${msg['username']}:</span><span class="user-message-span">${msg['message']}</span>`);
+    $('#user-messages').append(`<li class="incomming-message message shadow-sm">
+                                <span class="username-span">${msg['username']}:</span>
+                                <span class="user-message-span">${msg['message']}</span>
+                                <span class="date-time-span">${new Date().toLocaleTimeString()}</span>
+                                </li>`);
     $('#user-messages').scrollTop($('#user-messages')[0].scrollHeight);
   });
 
