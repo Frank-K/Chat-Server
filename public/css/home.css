@@ -117,6 +117,21 @@ body {
     display: none;
 }
 
+/* Center element */
+.center {
+    text-align: center;
+}
+
+/* Help button at the bottom of the page */
+.help-button {
+    background-color: #f0f7ff;
+    font-size: 13px;
+}
+
+.help-button:hover {
+    background-color: #e5ecf3;
+}
+
 @media (min-width: 992px) {
     .main {
         width: 900px;
