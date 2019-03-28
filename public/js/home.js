@@ -6,6 +6,22 @@ $(function () {
     $('#notice').text(`Character limit: ${size} / 280`);
   });
 
+  $('.help-button').on('click', function() {
+    Swal.fire({
+      type: 'info',
+      title: 'Here are some helpful commands',
+      html:
+      '<b>/u</b> to see the number of online users<br/>' +
+      '<b>/a</b> to see the usernames of online users<br/>' +
+      '<b>/h</b> to see this message in the chat',
+      customClass: 'shadow',
+      confirmButtonClass: 'shadow-sm',
+      confirmButtonColor: '#53ccfb',
+      backdrop: 'rgba(122, 199, 228, 0.50)',
+      background: '#f0f7ff'
+    })
+  })
+
   // Popup when user first visits the site
   Swal.fire({
     title: 'Enter your username',
