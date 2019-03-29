@@ -1,4 +1,4 @@
-$(function () {  
+$(function () {
   
   // Update charater limit message
   $('#message').on('input', function(){

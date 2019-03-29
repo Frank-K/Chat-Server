@@ -16,7 +16,7 @@ $(function () {
       $('.main').tooltip('show');
     
       setTimeout( () => {
-        $('.main').tooltip('hide')
+        $('.main').tooltip('hide');
       }, 3000);
     }
   }
