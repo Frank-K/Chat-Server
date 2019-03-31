@@ -132,6 +132,28 @@ body {
     background-color: #e5ecf3;
 }
 
+.tab-content {
+    height: 92%;
+    margin-bottom: 20px;
+}
+
+.nav-tabs {
+    background-color: #e9eff7 !important;
+    border-bottom: #e9eff7 !important;
+}
+
+.nav-link {
+    border-top-left-radius: 0px !important;
+    border-top-right-radius: 0px !important;
+    color: grey !important;
+}
+
+.nav-link.active {
+    background-color: #f0f7ff !important;
+    border-color: #e9eff7 #e9eff7 #f0f7ff !important;
+    color: black !important;
+}
+
 @media (min-width: 992px) {
     .main {
         width: 900px;

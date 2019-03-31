@@ -14,7 +14,21 @@
   </head>
   <body>
     <div class="container main shadow" data-trigger="manual" data-animation="true" data-toggle="tooltip" data-placement="top" aria-label="services for cars" data-title="Scroll up to see previous messages">
-      <ul id="user-messages" class="user-messages"></ul>
+      
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" data-toggle="tab" href="#user-messages" role="tab" aria-controls="general" aria-selected="true">General</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#random" role="tab" aria-controls="random" aria-selected="false">Random</a>
+        </li>
+      </ul>
+
+      <div class="tab-content">
+        <ul id="user-messages" class="user-messages tab-pane fade show active" role="tabpanel" aria-labelledby="general-tab"></ul>
+        <ul id="random" class="user-messages tab-pane fade" role="tabpanel" aria-labelledby="random-tab"></ul>
+      </div>
+      
       <div class="message-input">
         <form action="">
           <p id="notice" class="text-muted">Character limit: 0 / 280</p>
@@ -26,9 +40,11 @@
           </div>
         </form>
       </div>
+
       <div class="center">
           <button type="button" class="btn help-button shadow-sm text-muted">I need some help</button>
       </div>
+
     </div>
 
     <!-- Optional JavaScript -->
