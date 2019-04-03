@@ -44,4 +44,18 @@ $(function () {
     socket.emit('join', value.value);
   });
 
+  $(".close").on('click', function() {
+    $(this).parent().append('<a class="nav-link undo"><i class="fas fa-undo"></i></a>');
+
+    $(this).hide();
+    $($(this).siblings()[0]).hide();
+  });
+
+  $(".nav-tabs").on('click', '.undo', function() {
+    $($(this).siblings()[0]).show();
+    $($(this).siblings()[1]).show();
+
+    $(this).remove();
+  });
+
 });
