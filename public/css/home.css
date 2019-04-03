@@ -41,7 +41,7 @@ body {
 }
 
 /* The container holding the messages */
-.user-messages {
+.message-container {
     height: 100%;
     overflow: scroll;
     padding-bottom: 75px;
@@ -50,7 +50,7 @@ body {
 }
 
 /* Hide the scroll bar for the chat box */
-.user-messages::-webkit-scrollbar { 
+.message-container::-webkit-scrollbar { 
     display: none; 
 }
 
@@ -152,6 +152,14 @@ body {
     background-color: #f0f7ff !important;
     border-color: #e9eff7 #e9eff7 #f0f7ff !important;
     color: black !important;
+}
+
+.close {
+    position: absolute;
+    padding: 2px;
+    font-size: 12px;
+    margin: 2px;
+    cursor: pointer;
 }
 
 @media (min-width: 992px) {

@@ -19,8 +19,8 @@ $(function () {
       confirmButtonColor: '#53ccfb',
       backdrop: 'rgba(122, 199, 228, 0.50)',
       background: '#f0f7ff'
-    })
-  })
+    });
+  });
 
   // Popup when user first visits the site
   Swal.fire({
@@ -42,6 +42,6 @@ $(function () {
   }).then((value) => {
     // Emit the username to the server
     socket.emit('join', value.value);
-  })
+  });
 
 });

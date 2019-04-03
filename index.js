@@ -45,8 +45,24 @@ io.on('connection', (socket) => {
   socket.on('join', (username) => {
     logger.info(`connection ${socket.id} ${username}`);
 
-    socket.broadcast.emit('server message', `${username} has joined the server.`);
-    socket.emit('server message', `Welcome to the server ${username}!`);
+    // Join the available rooms
+    socket.join('0');
+    socket.join('1');
+    socket.join('2');
+
+    let payloadExisting = {
+      "message": `${username} has joined the server.`
+    };
+
+    let payloadNew = {
+      "message": `Welcome to the server ${username}!`
+    };
+
+    // Send welcome message to existing connections
+    socket.broadcast.emit('server message all', payloadExisting);
+    // Send welcome message to new connection
+    socket.emit('server message all', payloadNew);
+
     global.users[socket.id] = username;
   });
 
@@ -54,24 +70,48 @@ io.on('connection', (socket) => {
   socket.on('disconnecting', () => {
     logger.info(`disconnection ${socket.id} ${global.users[socket.id]}`);
 
-    socket.broadcast.emit('server message', `${global.users[socket.id]} has left the server.`);
+    // Leave the available rooms
+    socket.leave('0');
+    socket.leave('1');
+    socket.leave('2');
+
+    let payloadExisting = {
+      "message": `${global.users[socket.id]} has left the server.`
+    };
+
+    socket.broadcast.emit('server message all', payloadExisting);
     delete global.users[socket.id];
   });
 
   // Send the message to all users or send a message from the server to the user
-  socket.on('chat message', (msg) => {
+  socket.on('chat message', (msgObject) => {
+    let msg = msgObject.message;
+    let roomName = msgObject.index;
+    let roomId = msgObject.id;
+
     logger.info(`message ${global.users[socket.id]}: ${msg} `);
 
     let helpers = new Helpers();
 
+    let payload = {
+      "roomIndex": roomName,
+      "roomId": roomId,
+      "username": global.users[socket.id]
+    };
+
     if (msg.toString().length > 280) {
-      socket.emit('server message', 'Sorry, your message was too long to send.');
+      payload.message = 'Sorry, your message was too long to send.';
+      socket.emit('server message', payload);
+
     } else if (helpers.isCommand(msg.toString())) {
-      socket.emit('server message', helpers.doCommand(msg.toString(), global.users));
+      payload.message = helpers.doCommand(msg.toString(), global.users);
+      socket.emit('server message', payload);
+
     } else {
-      let payload = {'username': global.users[socket.id], 'message': msg}
-      socket.broadcast.emit('chat message', payload);
+      payload.message = msg;
+      socket.to(payload.roomIndex).broadcast.emit('chat message', payload);
     }
+
   });
 
 });
