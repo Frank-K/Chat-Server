@@ -4,7 +4,7 @@ const http = require("http").Server(app);
 const io = require("socket.io")(http);
 const path = require("path");
 const winston = require("winston");
-const Helpers = require("./src/helpers.js");
+const Commands = require("./src/commands.js");
 const actions = require("./src/actions.js");
 
 const logger = winston.createLogger({
@@ -32,9 +32,9 @@ app.get("/", (req, res) => {
 
 // Check if a message is a command
 app.get("/commands", (req, res) => {
-  const helpers = new Helpers();
+  const commands = new Commands();
 
-  res.status(200).json({ commands: Array.from(helpers.getCommands()) });
+  res.status(200).json({ commands: Array.from(commands.getCommands()) });
 });
 
 // Global users variable to keep track of current users

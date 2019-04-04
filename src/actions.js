@@ -1,4 +1,4 @@
-const Helpers = require("./helpers.js");
+const Commands = require("./commands.js");
 
 /**
  * Function executed when the join event is received
@@ -70,7 +70,7 @@ const onChatMessage = (socket, logger, msgObject) => {
 
   logger.info(`message ${global.users[socket.id]}: ${msg} `);
 
-  const helpers = new Helpers();
+  const commands = new Commands();
 
   const payload = {
     roomIndex: roomName,
@@ -81,8 +81,8 @@ const onChatMessage = (socket, logger, msgObject) => {
   if (msg.toString().length > 280) {
     payload.message = "Sorry, your message was too long to send.";
     socket.emit("server message", payload);
-  } else if (helpers.isCommand(msg.toString())) {
-    payload.message = helpers.doCommand(msg.toString(), global.users);
+  } else if (commands.isCommand(msg.toString())) {
+    payload.message = commands.doCommand(msg.toString(), global.users);
     socket.emit("server message", payload);
   } else {
     payload.message = msg;

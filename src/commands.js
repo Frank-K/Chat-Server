@@ -1,18 +1,28 @@
-class Helpers {
-  // A class for helper functions
-
+/** Class representing a set of commands. */
+class Commands {
+  /**
+   * Create a new commands object.
+   */
   constructor() {
     this.commands = new Set(["/n", "/a", "/h"]);
   }
 
+  /**
+   * Get the x value.
+   * @param {string} s - a string that might be a command
+   * @return {boolean} true if the string is a command
+   */
   isCommand(s) {
-    // Return true iff s is a commands
     return this.commands.has(s);
   }
 
+  /**
+   * Return the result of the command
+   * @param {string} s - a string that might be a command
+   * @param {Object} users - the global users object
+   * @return {string} the result of the command s
+   */
   doCommand(s, users) {
-    // Return the result of a command
-
     if (!this.isCommand(s)) {
       return "";
     }
@@ -34,9 +44,13 @@ class Helpers {
     return "";
   }
 
+  /**
+   * Return all the commands
+   * @return {Object} an array of all valid commands
+   */
   getCommands() {
     return this.commands;
   }
 }
 
-module.exports = Helpers;
+module.exports = Commands;
