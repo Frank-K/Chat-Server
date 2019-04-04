@@ -100,7 +100,7 @@ $(() => {
 
   // Handle a message from the server
   socket.on("server message", payload => {
-    const { id, message } = payload;
+    const { roomId: id, message } = payload;
 
     newMessage(id);
 
