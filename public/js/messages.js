@@ -1,12 +1,6 @@
 const socket = io();
 
 $(() => {
-  // Get message commands from the server
-  let commands;
-  $.get("/commands", body => {
-    commands = new Set(body.commands);
-  });
-
   // Return the id and index of the current room the user is active in
   const getActiveRoom = () => {
     const rooms = $(".tab-content").children();
@@ -34,6 +28,21 @@ $(() => {
     return arr;
   };
 
+  // Change the icon for the chat at index
+  const changeIcon = index => {
+    const closeButton = $("i[data-room-index]")[index];
+    const tab = $(closeButton).parent();
+
+    const icon = $(tab).find(".far");
+    const chat = $(tab).find(".nav-link");
+
+    // Only change the icon on the non active tabs
+    if (!$(chat).hasClass("active")) {
+      $(icon).removeClass("fa-comment");
+      $(icon).addClass("fa-comment-dots");
+    }
+  };
+
   // Show tooltip the first time the message container overflows
   let flag = 1;
   const newMessage = id => {
@@ -46,6 +55,17 @@ $(() => {
       }, 3000);
     }
   };
+
+  // Get message commands from the server
+  let commands;
+  $.get("/commands", body => {
+    commands = new Set(body.commands);
+  });
+
+  // Submit the for when the send button is pressed
+  $("#submit-button").click(() => {
+    $("form").submit();
+  });
 
   $("form").submit(e => {
     e.preventDefault();
@@ -78,17 +98,12 @@ $(() => {
     return false;
   });
 
-  // Submit the for when the send button is pressed
-  $("#submit-button").click(() => {
-    $("form").submit();
-  });
-
   // Handle a chat message from another user
   socket.on("chat message", payload => {
-    const id = payload.roomId;
-    const { message, username } = payload;
+    const { roomId: id, message, username, roomIndex } = payload;
 
     newMessage(id);
+    changeIcon(roomIndex);
 
     $(`#${id}`).append(`<li class="incomming-message message shadow-sm">
                         <span class="username-span">${username}:</span>

@@ -72,4 +72,28 @@ $(() => {
 
     socket.emit("join room", room);
   });
+
+  // Change icon on tab when the tab is clicked
+  $(".nav-item").on("click", e => {
+    const object = e.currentTarget;
+    const icon = $(object).find(".far")[0];
+
+    if ($(icon).hasClass("fa-comment-dots")) {
+      $(icon).removeClass("fa-comment-dots");
+      $(icon).addClass("fa-comment");
+    }
+  });
+
+  $(".volume").on("click", e => {
+    const object = e.currentTarget;
+    const icon = $(object).find(".fas")[0];
+
+    if ($(icon).hasClass("fa-volume-up")) {
+      $(icon).removeClass("fa-volume-up")
+      $(icon).addClass("fa-volume-mute")
+    } else if ($(icon).hasClass("fa-volume-mute")) {
+      $(icon).removeClass("fa-volume-mute")
+      $(icon).addClass("fa-volume-up")
+    }
+  })
 });
