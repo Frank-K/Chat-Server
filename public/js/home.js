@@ -89,11 +89,11 @@ $(() => {
     const icon = $(object).find(".fas")[0];
 
     if ($(icon).hasClass("fa-volume-up")) {
-      $(icon).removeClass("fa-volume-up")
-      $(icon).addClass("fa-volume-mute")
+      $(icon).removeClass("fa-volume-up");
+      $(icon).addClass("fa-volume-mute");
     } else if ($(icon).hasClass("fa-volume-mute")) {
-      $(icon).removeClass("fa-volume-mute")
-      $(icon).addClass("fa-volume-up")
+      $(icon).removeClass("fa-volume-mute");
+      $(icon).addClass("fa-volume-up");
     }
-  })
+  });
 });

@@ -132,6 +132,7 @@ body {
     background-color: #e5ecf3;
 }
 
+/* The chat tabs */
 .tab-content {
     height: 92%;
     margin-bottom: 20px;
@@ -154,6 +155,7 @@ body {
     color: black !important;
 }
 
+/* The x button for the chats */
 .close {
     position: absolute;
     padding: 2px;
