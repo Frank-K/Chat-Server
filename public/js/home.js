@@ -47,21 +47,29 @@ $(() => {
 
   $(".close").on("click", e => {
     const object = e.currentTarget;
+    const room = $(object).attr("data-room-index");
 
     $(object)
       .parent()
-      .append('<a class="nav-link undo"><i class="fas fa-undo"></i></a>');
+      .append(
+        `<a class="nav-link undo" data-room-index="${room}"><i class="fas fa-undo"></i></a>`
+      );
 
     $(object).hide();
     $($(object).siblings()[0]).hide();
+
+    socket.emit("leave room", room);
   });
 
   $(".nav-tabs").on("click", ".undo", e => {
     const object = e.currentTarget;
+    const room = $(object).attr("data-room-index");
 
     $($(object).siblings()[0]).show();
     $($(object).siblings()[1]).show();
 
     $(object).remove();
+
+    socket.emit("join room", room);
   });
 });

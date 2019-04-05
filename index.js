@@ -55,6 +55,14 @@ io.on("connection", socket => {
   socket.on("chat message", msgObject => {
     actions.onChatMessage(socket, logger, msgObject);
   });
+
+  socket.on("leave room", room => {
+    socket.leave(room);
+  });
+
+  socket.on("join room", room => {
+    socket.join(room);
+  });
 });
 
 http.listen(3000, () => {
