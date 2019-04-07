@@ -6,7 +6,7 @@ This project is an online, real time chat application that allows users to conne
 
 ### Front End
 The front end of the application is built using bootstrap.
-![](screen.png "Frond End")
+![](assets/screen.png "Frond End")
 
 ### Back End
 The back end of the application is built using Node.js + Express.js, with socket.io providing the web sockets to enable the chat. The npm module [winston](https://www.npmjs.com/package/winston) is also used on the back end to facilitate logging.
